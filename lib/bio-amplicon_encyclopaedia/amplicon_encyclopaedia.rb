@@ -1,0 +1,3 @@
+module BioAmpliconEncyclopaedia
+
+end
