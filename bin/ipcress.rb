@@ -92,10 +92,10 @@ passable_ipcresses.each do |ipcress|
   ae = entries_hash[ipcress.experiment_name]
   pub = publications_hash[ae.identifying_publication_string]
   
-  if ae.pmid == '22092776'
-    log.debug ae
-    log.debug pub
-  end
+  # if ae.pmid == '22092776'
+    # log.debug ae
+    # log.debug pub
+  # end
   puts [
     ae.identifying_publication_string,
     ae.description,

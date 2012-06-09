@@ -80,6 +80,8 @@ module AmpliconEncyclopaedia
   end
 
   class Entry
+    DEFAULT_PUBMED_CACHE = File.join(File.dirname(__FILE__),'..','data','pubmed')
+    
     attr_accessor :forward_primer, :reverse_primer, :pmid, :doi, :url, :target, :coordinates, :description, :genbanks, :sra
     
     attr_accessor :comments
@@ -92,7 +94,7 @@ module AmpliconEncyclopaedia
     end
     
     def cache_path
-      File.join(File.dirname(__FILE__),'..','data','pubmed',"#{pmid}.medline")
+      File.join(DEFAULT_PUBMED_CACHE,"#{pmid}.medline")
     end
     
     def medline

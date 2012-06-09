@@ -12,7 +12,7 @@ SCRIPT_NAME = File.basename(__FILE__); LOG_NAME = SCRIPT_NAME.gsub('.rb','')
 # Parse command line options into the options hash
 options = {
   :logger => 'stderr',
-
+  :target_directory => AmpliconEncyclopaedia::Entry::DEFAULT_PUBMED_CACHE,
 }
 o = OptionParser.new do |opts|
   opts.banner = "
