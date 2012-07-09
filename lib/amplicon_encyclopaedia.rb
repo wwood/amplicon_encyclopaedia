@@ -13,6 +13,14 @@ module AmpliconEncyclopaedia
         ]
       }.flatten.reject{|d| d.nil?}
     end
+    
+    def has_sequences_from?(accessions)
+      primer_sets.reject {|ae|
+        accessions.select{ |acc|
+          all_database_accessions.include?(acc)
+        }.empty?
+      }
+    end
   end
   
   class CSVDatabase
@@ -69,13 +77,22 @@ module AmpliconEncyclopaedia
     
     
     def publications_hash
-      publications = {}
+      publications = PublicationCollect.new
       each do |entry|
         publications[entry.identifying_publication_string] ||= Publication.new
         publications[entry.identifying_publication_string].primer_sets ||= []
         publications[entry.identifying_publication_string].primer_sets.push entry
       end
       return publications
+    end
+  end
+  
+  class PublicationCollect<Hash
+    # Return those publications that encode one or more of the accessions that a given
+    def select_by_accessions(accessions)
+      select do |publication_id|
+        self[publication_id].has_sequences_from?(accessions)
+      end
     end
   end
 
