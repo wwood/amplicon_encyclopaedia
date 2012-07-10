@@ -47,14 +47,14 @@ module AmpliconEncyclopaedia
           :url, :target, :coordinates, :description,
           :genbanks, :sra
         ].each do |attr, index|
-          entry.send("#{attr.to_s}=".to_sym, row[i])
+          entry.send("#{attr.to_s}=".to_sym, row[i].strip) unless row[i].nil?
           i += 1
         end
         
         # The comments are all the rest of the columns
         entry.comments = []
         while !(row[i].nil?)
-          entry.comments.push row[i]
+          entry.comments.push row[i].strip unless row[i].nil?
           i += 1
         end
         
